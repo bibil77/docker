@@ -1,0 +1,4 @@
+docker system prune -a
+ou
+docker rmi <id>
+ou docker rm <id>
