@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  # Service MySQL
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: RootPassword
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+
+  # Service WordPress
+  wordpress:
+    image: wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: database
+      WORDPRESS_TABLE_PREFIX: wp_
+
+volumes:
+  db_data:
+  wordpress_data:
